@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "kaggle-docker-poetry"
+version = "0.1.0"
+description = ""
+authors = ["github.com/kiccho1101"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+pandas = "^0.25.3"
+numpy = "^1.17.4"
+lightgbm = "^2.3.0"
+jupyter = "^1.0.0"
+jupyterlab = "^1.2.3"
+scikit-learn = "^0.21.3"
+xgboost = "^0.90"
+catboost = "^0.19.1"
+requests = "^2.22.0"
+flask = "^1.1.1"
+optuna = "^0.19.0"
+tqdm = "^4.38.0"
+plotly = "^4.3.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^4.6"
+flake8 = "^3.7.9"
+mypy = "^0.740"
+black = "^19.10b0"
+isort = "^4.3.21"
+jupyterlab-git = "^0.8.1"
+jupyterlab_code_formatter = "^0.7.0"
+ipywidgets = "^7.5.1"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
