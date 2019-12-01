@@ -11,5 +11,6 @@
     "editorGroup.border": "#d04649",
     "tab.activeBorder": "#d04649"
   },
-  "peacock.color": "#b52e31"
+  "peacock.color": "#b52e31",
+  "python.pythonPath": "/Users/yodaikishimoto/.local/share/virtualenvs/atcoder-4fsIg-s8/bin/python"
 }
