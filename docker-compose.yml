@@ -2,9 +2,9 @@ version: '3.6'
 
 services:
   jupyter:
-    image: youodf/kaggle-python
+    image: youodf/datascience
     ports:
       - "8888:8888"
     volumes:
       - .:/app
-    command: jupyter lab --ip 0.0.0.0 --no-browser --allow-root
+    command: jupyter notebook --ip 0.0.0.0 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''
