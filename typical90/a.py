@@ -1,28 +1,29 @@
-_, L = list(map(int, input().split()))
+_, L = map(int, input().split())
 K = int(input())
-a_list = list(map(int, input().split()))
+A = list(map(int, input().split()))
 
 
-def ans_is_bigger_than_mid(a_list, mid, K):
+def mid_is_bigger_than_ans(mid, K, A):
+    a_list = [0] + A + [L]
+
+    current = 0
     cnt = 0
-    pre = 0
-    for i in range(len(a_list)):
-        if a_list[i] - pre >= mid and L - a_list[i] >= mid:
+    for i in range(1, len(a_list)):
+        length = a_list[i] - a_list[current]
+        if length > mid:
             cnt += 1
-            pre = a_list[i]
-    return cnt >= K
+            current = i
+
+    return cnt >= K + 1
 
 
 left = -1
 right = L + 1
-
 while right - left > 1:
     mid = left + (right - left) // 2
-
-    a = ans_is_bigger_than_mid(a_list, mid, K)
-    if a:
+    if mid_is_bigger_than_ans(mid, K, A):
         left = mid
     else:
         right = mid
 
-print(left)
+print(left + 1)
