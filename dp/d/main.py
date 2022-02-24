@@ -11,10 +11,9 @@ for i in range(N):
         ans = max(ans, dp[i][w])
     else:
         for j in range(1, W + 1):
-            dp[i][j] = dp[i - 1][j]
-        for j in range(1, W + 1):
+            dp[i][j] = max(dp[i][j], dp[i - 1][j])
             if j - w > -1:
                 dp[i][j] = max(dp[i][j], dp[i - 1][j - w] + v)
-                ans = max(ans, dp[i][j])
+            ans = max(ans, dp[i][j])
 
 print(ans)
