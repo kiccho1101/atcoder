@@ -2,7 +2,10 @@
 
 DIR=$1
 FILE=$2
+EXT=${3:-py}
+
+FILENAME="$DIR/$FILE.$EXT"
 
 mkdir -p "$DIR"
-touch "$DIR/$FILE"
-code "$DIR/$FILE"
+touch "$FILENAME"
+code "$FILENAME"
