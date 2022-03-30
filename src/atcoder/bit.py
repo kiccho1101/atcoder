@@ -6,23 +6,29 @@
 class BIT:
     def __init__(self, n: int):
         self.n = n
-        self.data = [0.0] * n
+        self.data = [0] * n
 
-    def add(self, p: int, x: float):
+    def add(self, p: int, x: int):
         p += 1  # 0-indexed -> 1-indexed
         while p <= self.n:
             self.data[p - 1] += x
             p += p & -p
 
-    def _sum(self, idx: int) -> float:
-        s = 0.0
+    def sum(self, left: int, right: int) -> int:
+        return self._sum(right) - self._sum(left)
+
+    def _sum(self, idx: int) -> int:
+        s = 0
         while idx > 0:
             s += self.data[idx - 1]
             idx -= idx & -idx
         return s
 
-    def sum(self, left: int, right: int) -> float:
-        return self._sum(right) - self._sum(left)
+    def insert(self, x: int):
+        self.add(x, 1)
+
+    def erase(self, x: int):
+        self.add(x, -1)
 
 
 if __name__ == "__main__":
