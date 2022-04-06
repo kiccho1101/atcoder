@@ -3,27 +3,32 @@
 # https://blog.hamayanhamayan.com/entry/2017/10/04/101826
 
 
-from typing import List
-
-
 class UnionFind:
     def __init__(self, n: int):
-        self.par = list(range(n + 1))
+        self.n = n
+        self.par = [-1] * n
+        self.history = []
 
     def find(self, x: int) -> int:
-        if self.par[x] == x:
+        if self.par[x] < 0:
             return x
-        self.par[x] = self.find(self.par[x])
-        return self.par[x]
+        return self.find(self.par[x])
 
     def same(self, x: int, y: int) -> bool:
         return self.find(x) == self.find(y)
 
+    def undo(self):
+        for _ in range(2):
+            first, second = self.history.pop()
+            self.par[first] = second
+
     def union(self, x: int, y: int) -> None:
         x = self.find(x)
         y = self.find(y)
+        self.history.append((x, self.par[x]))
+        self.history.append((y, self.par[x]))
         if x == y:
             return
-        if x < y:
-            x, y = y, x
-        self.par[x] = y
+        if self.par[x] > self.par[y]:
+            self.par[x] += self.par[y]
+            self.par[y] = x
