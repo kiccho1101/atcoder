@@ -62,6 +62,8 @@ def get_union_find(field):
 
 
 uf = get_union_find(field)
+
+
 if uf.group_num(field) == 1:
     print("YES")
     exit()

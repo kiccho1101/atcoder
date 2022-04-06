@@ -22,6 +22,9 @@ class UnionFind:
             first, second = self.history.pop()
             self.par[first] = second
 
+    def size(self, x: int):
+        return -self.par[self.find(x)]
+
     def union(self, x: int, y: int) -> None:
         x = self.find(x)
         y = self.find(y)
@@ -30,5 +33,6 @@ class UnionFind:
         if x == y:
             return
         if self.par[x] > self.par[y]:
-            self.par[x] += self.par[y]
-            self.par[y] = x
+            x, y = y, x
+        self.par[x] += self.par[y]
+        self.par[y] = x
