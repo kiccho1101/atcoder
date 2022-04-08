@@ -4,20 +4,20 @@
 from typing import List
 
 
-def bellman_ford(edges: List[List[int]], num_nodes: int, start: int) -> List[float]:
-    INF = float("inf")
-    dist = [INF] * num_nodes
+def bellman_ford(edges: List[List[int]], V: int, start: int) -> List[int]:
+    INF = 10 ** 18
+    dist = [INF] * V
     dist[start] = 0
-    num_edges = len(edges)
+    E = len(edges)
 
-    for i in range(num_nodes):
-        for j in range(num_edges):
+    for i in range(V):
+        for j in range(E):
             s, e, w = edges[j]
             if dist[s] != INF and dist[e] > dist[s] + w:
                 dist[e] = dist[s] + w
 
                 # n回目にも更新があるなら負の閉路がある
-                if i == num_nodes - 1:
+                if i == V - 1:
                     dist[e] = -INF
                     updated = True
                     while updated:
