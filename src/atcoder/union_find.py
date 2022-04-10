@@ -3,6 +3,9 @@
 # https://blog.hamayanhamayan.com/entry/2017/10/04/101826
 
 
+from typing import Set
+
+
 class UnionFind:
     def __init__(self, n: int):
         self.n = n
@@ -16,6 +19,12 @@ class UnionFind:
 
     def same(self, x: int, y: int) -> bool:
         return self.find(x) == self.find(y)
+
+    def groups(self) -> Set[int]:
+        groups = set()
+        for i in range(self.n):
+            groups.add(self.find(i))
+        return groups
 
     def undo(self):
         for _ in range(2):
