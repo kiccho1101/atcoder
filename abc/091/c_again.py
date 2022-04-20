@@ -147,32 +147,27 @@ class SortedMultiset(Generic[T]):
         return ans
 
 
-N, M = map(int, input().split())
+N = int(input())
 
-A = list(map(int, input().split()))
-B = list(map(int, input().split()))
-C = list(map(int, input().split()))
-D = list(map(int, input().split()))
+points = []
+for _ in range(N):
+    x, y = map(int, input().split())
+    points.append((x, y, True))
+for _ in range(N):
+    x, y = map(int, input().split())
+    points.append((x, y, False))
 
-cb = []
-for i in range(N):
-    cb.append((A[i], B[i], True))
-for i in range(M):
-    cb.append((C[i], D[i], False))
+points.sort(reverse=True, key=lambda x: (x[0], x[2]))
 
-
-cb.sort(reverse=True, key=lambda x: (x[0], not x[2]))
-box_widths = SortedMultiset([])
-
-for i in range(len(cb)):
-    h, w, is_choco = cb[i]
-    if is_choco:
-        j = box_widths.ge(w)
-        if j is None:
-            print("No")
-            exit()
-        box_widths.discard(j)
+st = SortedMultiset([])
+ans = 0
+for x, y, is_red in points:
+    if is_red:
+        j = st.ge(y)
+        if j is not None:
+            st.discard(j)
+            ans += 1
     else:
-        box_widths.add(w)
+        st.add(y)
 
-print("Yes")
+print(ans)
