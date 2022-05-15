@@ -16,4 +16,5 @@ def get_primes(n: int) -> List[int]:
     return primes
 
 
-print(get_primes(10))
+if __name__ == "__main__":
+    print(get_primes(100))
